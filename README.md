@@ -121,6 +121,50 @@ sudo snap install code --classic
 sudo snap install thunderbird
 ```
 
+
+Sure! Here's **Section 6 rewritten in English**, with minimal comments, aligned with the technical tone of the rest of your guide:
+
+---
+
+### 6.1 Install GNOME Extensions
+
+#### Tiling Shell Extension
+
+```bash
+sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
+```
+
+Open **Extension Manager** or go to:
+[https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
+Enable the extension.
+
+---
+
+### 6.2 Install Docker
+
+```bash
+# Add Docker GPG key
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add Docker repository
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker and plugins
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Add user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+
 ---
 
 ## References
