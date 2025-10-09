@@ -14,7 +14,8 @@ This guide details the steps to install the **mainline kernel 6.17**, set up the
    - This is required for multi-GPU setups, hybrid rendering, or GPU passthrough.
 
 3. **Enable RAM XMP/DOCP Profile (e.g., DOCP 2)**  
-   - Set memory to its rated speed (e.g., 6000 MHz) by enabling the appropriate DOCP/XMP profile.  
+   - Set memory to its rated speed (e.g., 6000 MHz) by enabling the appropriate DOCP/XMP profile.
+   - Enable Restore From Context RAM (ensure reboot work correctly)
    - Ensures full memory bandwidth and optimal Ryzen performance.
 
 4. **Disable Secure Boot**  
