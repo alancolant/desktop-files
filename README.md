@@ -136,15 +136,12 @@ Sure! Here's **Section 6 rewritten in English**, with minimal comments, aligned 
 
 ### 6.1 Install GNOME Extensions
 
-#### Tiling Shell Extension
-
 ```bash
 sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
 ```
 
-Open **Extension Manager** or go to:
 [https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
-Enable the extension.
+[https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/)
 
 ---
 
