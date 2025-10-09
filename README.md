@@ -141,7 +141,7 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 ```
 
 [https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
-[https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/)
+[https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/) -> Change shortcut to `Super` + `C`
 
 ---
 
