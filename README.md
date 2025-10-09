@@ -107,29 +107,10 @@ sudo reboot
 These packages enhance system usability, provide common utilities, and add multimedia support.
 
 
-Install libfuse + appimaged (AppImage launcher)
+### 6.1 Install AppImage dependencies + AppImageLauncher
 ```bash
-# Install libfuse2 required to run AppImage
 sudo apt install -y libfuse2t64
-
-# Remove pre-existing conflicting tools (if any)
-systemctl --user stop appimaged.service || true
-sudo apt-get -y purge appimagelauncher || true
-rm -f ~/.config/systemd/user/default.target.wants/appimagelauncherd.service
-systemctl --user daemon-reload
-
-# Clear cache
-rm "$HOME"/.local/share/applications/appimage*
-
-# Optionally, install Firejail (if you want sandboxing functionality)
-
-# Download
-mkdir -p ~/Applications
-wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimaged-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2) -P ~/Applications/
-chmod +x ~/Applications/appimaged-*.AppImage
-
-# Launch
-~/Applications/appimaged-*.AppImage
+wget -qO appimagelauncher.deb https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-1/appimagelauncher_3.0.0-alpha-4-gha275.0bcc75d_amd64.deb && sudo dpkg -i appimagelauncher.deb || sudo apt-get -f install -y && rm appimagelauncher.deb
 ```
 
 
@@ -201,4 +182,3 @@ newgrp docker
 
 * [Intel Linux GPU Driver Documentation](https://dgpu-docs.intel.com/driver/client/overview.html)
 * [Ubuntu Mainline Kernel Guide](https://doc.ubuntu-fr.org/mainline)
-* [AppImaged installation]([https://doc.ubuntu-fr.org/mainline](https://github.com/probonopd/go-appimage/blob/master/src/appimaged/README.md))
