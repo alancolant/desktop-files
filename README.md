@@ -107,8 +107,11 @@ sudo reboot
 These packages enhance system usability, provide common utilities, and add multimedia support.
 
 
-Install appimaged (AppImage launcher)
+Install libfuse + appimaged (AppImage launcher)
 ```bash
+# Install libfuse2 required to run AppImage
+sudo apt install -y libfuse2t64
+
 # Remove pre-existing conflicting tools (if any)
 systemctl --user stop appimaged.service || true
 sudo apt-get -y purge appimagelauncher || true
@@ -135,7 +138,7 @@ chmod +x ~/Applications/appimaged-*.AppImage
 sudo apt-get update
 
 # Install common utilities
-sudo apt-get install -y mc htop curl git ubuntu-restricted-extras flatpak gnome-software-plugin-flatpak libfuse2t64
+sudo apt-get install -y mc htop curl git ubuntu-restricted-extras flatpak gnome-software-plugin-flatpak
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Extra packages
