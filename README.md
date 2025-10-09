@@ -119,6 +119,10 @@ sudo apt-get install -y ubuntu-restricted-extras
 # Extra packages
 sudo snap install code --classic
 sudo snap install thunderbird
+sudo snap install discord && sudo snap connect discord:system-observe
+
+# Disable Discord host update
+[ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
 ```
 
 
