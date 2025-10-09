@@ -111,10 +111,9 @@ These packages enhance system usability, provide common utilities, and add multi
 sudo apt-get update
 
 # Install common utilities
-sudo apt-get install -y mc htop curl git
-
-# Install Ubuntu restricted extras for multimedia codecs, fonts, and proprietary software
-sudo apt-get install -y ubuntu-restricted-extras
+sudo apt-get install -y mc htop curl git ubuntu-restricted-extras flatpak gnome-software-plugin-flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+echo 'export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share' >> ~/.profile
 
 # Extra packages
 sudo snap install code --classic
@@ -126,6 +125,9 @@ wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&for
 [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
 # Force electron apps to use wayland
 echo 'export ELECTRON_OZONE_PLATFORM_HINT=wayland' >> ~/.profile
+
+# Gear Lever (AppImage launcher)
+flatpak install -y flathub it.mijorus.gearlever
 
 ```
 
