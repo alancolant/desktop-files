@@ -106,14 +106,37 @@ sudo reboot
 
 These packages enhance system usability, provide common utilities, and add multimedia support.
 
+
+Install appimaged (AppImage launcher)
+```bash
+# Remove pre-existing conflicting tools (if any)
+systemctl --user stop appimaged.service || true
+sudo apt-get -y purge appimagelauncher || true
+rm -f ~/.config/systemd/user/default.target.wants/appimagelauncherd.service
+systemctl --user daemon-reload
+
+# Clear cache
+rm "$HOME"/.local/share/applications/appimage*
+
+# Optionally, install Firejail (if you want sandboxing functionality)
+
+# Download
+mkdir -p ~/Applications
+wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases/expanded_assets/continuous -O - | grep "appimaged-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2) -P ~/Applications/
+chmod +x ~/Applications/appimaged-*.AppImage
+
+# Launch
+~/Applications/appimaged-*.AppImage
+```
+
+
 ```bash
 # Update package list first
 sudo apt-get update
 
 # Install common utilities
-sudo apt-get install -y mc htop curl git ubuntu-restricted-extras flatpak gnome-software-plugin-flatpak
+sudo apt-get install -y mc htop curl git ubuntu-restricted-extras flatpak gnome-software-plugin-flatpak libfuse2t64
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-echo 'export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share' >> ~/.profile
 
 # Extra packages
 sudo snap install code --classic
@@ -123,11 +146,6 @@ sudo snap install thunderbird
 wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb" && sudo apt install /tmp/discord.deb && rm ./discord.deb
 # Disable Discord host update
 [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
-# Force electron apps to use wayland
-echo 'export ELECTRON_OZONE_PLATFORM_HINT=wayland' >> ~/.profile
-
-# Gear Lever (AppImage launcher)
-flatpak install -y flathub it.mijorus.gearlever
 
 ```
 
@@ -178,3 +196,4 @@ newgrp docker
 
 * [Intel Linux GPU Driver Documentation](https://dgpu-docs.intel.com/driver/client/overview.html)
 * [Ubuntu Mainline Kernel Guide](https://doc.ubuntu-fr.org/mainline)
+* [AppImaged installation]([https://doc.ubuntu-fr.org/mainline](https://github.com/probonopd/go-appimage/blob/master/src/appimaged/README.md))
