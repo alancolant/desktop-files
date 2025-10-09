@@ -148,7 +148,7 @@ wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&for
 [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
 
 # Bruno (AppImage)
-FILENAME=$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*') && curl -L "https://github.com/usebruno/bruno/releases/latest/download/$FILENAME" -o /home/$USER/Applications/bruno.AppImage && chmod +x /home/$USER/Applications/bruno.AppImage
+curl -L "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')" -o /home/$USER/Applications/bruno.AppImage
 ```
 
 
