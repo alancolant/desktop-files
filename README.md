@@ -140,8 +140,8 @@ Sure! Here's **Section 6 rewritten in English**, with minimal comments, aligned 
 sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
 ```
 
-[https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
-[https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/) -> Change shortcut to `Super` + `C`
+- [https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
+- [https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/) -> Change shortcut to `Super + C`
 
 ---
 
