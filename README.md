@@ -120,10 +120,13 @@ sudo apt-get install -y ubuntu-restricted-extras
 sudo snap install code --classic
 sudo snap install thunderbird
 
+# Discord
 wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb" && sudo apt install /tmp/discord.deb && rm ./discord.deb
-
 # Disable Discord host update
 [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
+# Force electron apps to use wayland
+echo 'export ELECTRON_OZONE_PLATFORM_HINT=wayland' >> ~/.profile
+
 ```
 
 
