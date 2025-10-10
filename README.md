@@ -142,12 +142,12 @@ wget -qO /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&fo
 
 # Bruno (AppImage)
 wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')"
+
+# Flameshot + Flameshot-gnome
+sudo apt install -y gcc flameshot
+cd /tmp && git clone --depth 1 https://github.com/Arcitec/flameshot-gnome.git flameshot && ./flameshot/install.sh && rm -rf ./flameshot
 ```
 
-
-Sure! Here's **Section 6 rewritten in English**, with minimal comments, aligned with the technical tone of the rest of your guide:
-
----
 
 ### 6.4 Install GNOME Extensions
 
