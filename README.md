@@ -106,14 +106,19 @@ sudo reboot
 
 These packages enhance system usability, provide common utilities, and add multimedia support.
 
+### 6.1 Disable ubuntu Pro functions
 
-### 6.1 Install AppImage dependencies + AppImageLauncher
+```bash
+sudo apt-get remove -y --purge ubuntu-advantage-tools ubuntu-pro-client
+```
+
+### 6.2 Install AppImage dependencies + AppImageLauncher
 ```bash
 sudo apt install -y libfuse2t64
 wget -qO appimagelauncher.deb https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-1/appimagelauncher_3.0.0-alpha-4-gha275.0bcc75d_amd64.deb && sudo dpkg -i appimagelauncher.deb && rm appimagelauncher.deb
 ```
 
-### 6.2 Install other packages
+### 6.3 Install other packages
 
 ```bash
 # Update package list first
@@ -144,7 +149,7 @@ Sure! Here's **Section 6 rewritten in English**, with minimal comments, aligned 
 
 ---
 
-### 6.1 Install GNOME Extensions
+### 6.4 Install GNOME Extensions
 
 ```bash
 sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
@@ -155,7 +160,7 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 
 ---
 
-### 6.2 Install Docker
+### 6.5 Install Docker
 
 ```bash
 # Add Docker GPG key
