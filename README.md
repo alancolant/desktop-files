@@ -109,7 +109,7 @@ These packages enhance system usability, provide common utilities, and add multi
 ### 6.1 Disable ubuntu Pro functions
 
 ```bash
-sudo apt-get remove -y --purge ubuntu-advantage-tools ubuntu-pro-client
+sudo apt-get remove -y --purge ubuntu-pro-client
 ```
 
 ### 6.2 Install AppImage dependencies + AppImageLauncher
