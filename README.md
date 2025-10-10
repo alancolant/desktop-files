@@ -145,7 +145,12 @@ wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/br
 
 # Flameshot + Flameshot-gnome
 sudo apt install -y gcc flameshot
-cd /tmp && git clone --depth 1 https://github.com/Arcitec/flameshot-gnome.git flameshot && ./flameshot/install.sh && rm -rf ./flameshot
+# Change Print to use flameshot
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "sh -c 'QT_QPA_PLATFORM=wayland flameshot gui'"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Print'
+
 ```
 
 
@@ -191,3 +196,4 @@ newgrp docker
 
 * [Intel Linux GPU Driver Documentation](https://dgpu-docs.intel.com/driver/client/overview.html)
 * [Ubuntu Mainline Kernel Guide](https://doc.ubuntu-fr.org/mainline)
+* [Flameshot](https://flameshot.org/)
