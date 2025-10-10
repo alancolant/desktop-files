@@ -110,9 +110,10 @@ These packages enhance system usability, provide common utilities, and add multi
 ### 6.1 Install AppImage dependencies + AppImageLauncher
 ```bash
 sudo apt install -y libfuse2t64
-wget -qO appimagelauncher.deb https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-1/appimagelauncher_3.0.0-alpha-4-gha275.0bcc75d_amd64.deb && sudo dpkg -i appimagelauncher.deb || sudo apt-get -f install -y && rm appimagelauncher.deb
+wget -qO appimagelauncher.deb https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-1/appimagelauncher_3.0.0-alpha-4-gha275.0bcc75d_amd64.deb && sudo dpkg -i appimagelauncher.deb && rm appimagelauncher.deb
 ```
 
+### 6.2 Install other packages
 
 ```bash
 # Update package list first
@@ -126,13 +127,16 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo snap install code --classic
 sudo snap install thunderbird
 
+# MsEdge
+wget -qO /tmp/msedge.deb https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_141.0.3537.71-1_amd64.deb && sudo dpkg -i /tmp/msedge.deb && rm /tmp/msedge.deb
+
 # Discord
-wget -O /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb" && sudo apt install /tmp/discord.deb && rm ./discord.deb
+wget -qO /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb" && sudo apt install /tmp/discord.deb && rm ./discord.deb
 # Disable Discord host update
 [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
 
 # Bruno (AppImage)
-curl -L "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')" -o /home/$USER/Applications/bruno.AppImage
+wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')"
 ```
 
 
