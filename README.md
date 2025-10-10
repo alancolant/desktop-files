@@ -142,19 +142,38 @@ wget -qO /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&fo
 
 # Bruno (AppImage)
 wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')"
+```
 
-# Flameshot + Flameshot-gnome
-sudo apt install -y gcc flameshot
-# Change Print to use flameshot
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Flameshot'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "sh -c 'QT_QPA_PLATFORM=wayland flameshot gui'"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Print'
+### 6.4 Install Flameshot and configure
+```bash
+sudo apt install -y flameshot
 
+# Change native shortcuts
+
+gsettings set org.gnome.shell.keybindings screenshot "[]"
+gsettings set org.gnome.shell.keybindings screenshot-window "[]"
+gsettings set org.gnome.shell.keybindings show-screenshot-ui "[]"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# 1. Flameshot GUI
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Flameshot GUI"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "script --command 'QT_QPA_PLATFORM=wayland flameshot full --clipboard' /dev/null"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Shift>Print"
+
+# 2. Flameshot Fullscreen
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "Flameshot Fullscreen"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "script --command 'QT_QPA_PLATFORM=wayland flameshot screen --clipboard' /dev/null"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Alt>Print"
+
+# 3. Flameshot Screen
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name "Flameshot Screen"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "script --command 'QT_QPA_PLATFORM=wayland flameshot gui --clipboard' /dev/null"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "Print"
 ```
 
 
-### 6.4 Install GNOME Extensions
+### 6.5 Install GNOME Extensions
 
 ```bash
 sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
@@ -165,7 +184,7 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 
 ---
 
-### 6.5 Install Docker
+### 6.6 Install Docker
 
 ```bash
 # Add Docker GPG key
