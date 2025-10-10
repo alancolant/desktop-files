@@ -132,6 +132,9 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo snap install code --classic
 sudo snap install thunderbird
 
+# G (Go version manager)
+wget -qO- https://git.io/g-install | sh -s
+
 # MsEdge
 wget -qO /tmp/msedge.deb https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_141.0.3537.71-1_amd64.deb && sudo dpkg -i /tmp/msedge.deb && rm /tmp/msedge.deb
 
