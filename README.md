@@ -210,6 +210,10 @@ gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 git clone --depth 1 https://github.com/dracula/gnome-terminal /tmp/dracula-terminal
 /tmp/dracula-terminal/install.sh -s Dracula --skip-dircolors
 rm -rf /tmp/dracula-terminal
+
+# To reset default
+# dconf reset -f /org/gnome/terminal/legacy/profiles:/
+
 ```
 ### 6.6 Install Docker
 
