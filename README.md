@@ -189,7 +189,7 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 
 ---
 
-### 6.7 Install Darcula Theme
+### 6.7 Install Dracula Theme
 ```bash
 
 mkdir -p /home/$USER/.themes /home/$USER/.config/gtk-4.0 /home/$USER/.config/assets
@@ -199,20 +199,12 @@ unzip /home/$USER/.themes/dracula-master.zip -d /home/$USER/.themes
 mv /home/$USER/.themes/gtk-master /home/$USER/.themes/Dracula
 rm /home/$USER/.themes/dracula-master.zip
 
-gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-
 cp -r /home/$USER/.themes/Dracula/assets/. /home/$USER/.config/assets/
 cp /home/$USER/.themes/Dracula/gtk-4.0/{gtk.css,gtk-dark.css} /home/$USER/.config/gtk-4.0/
 
-# Icons (optional)
-mkdir -p /home/$USER/.icons
-wget -O /home/$USER/.icons/Dracula.zip https://github.com/dracula/gtk/files/5214870/Dracula.zip
-unzip -o /home/$USER/.icons/Dracula.zip -d /home/$USER/.icons/
-rm /home/$USER/.icons/Dracula.zip
 
-gsettings set org.gnome.desktop.interface icon-theme "Dracula"
-
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 ```
 ### 6.6 Install Docker
 
@@ -245,7 +237,7 @@ newgrp docker
 ```
 
 
-### 6.7 Restore keybindings and extensions configurations
+### 6.7 Restore keybindings, extensions config, themes
 ```bash
 
 git clone https://github.com/alancolant/desktop-files temp
