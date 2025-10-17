@@ -218,6 +218,18 @@ newgrp docker
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/$USER/.bashrc
 ```
+
+
+### 6.7 Restore keybindings and extensions configurations
+```bash
+
+git clone https://github.com/alancolant/desktop-files temp
+dconf load / < ./temp/dconf.conf
+rm -rf ./temp
+
+```
+
+
 ---
 
 ## References
