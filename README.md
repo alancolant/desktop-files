@@ -254,3 +254,4 @@ rm -rf ./temp
 * [Intel Linux GPU Driver Documentation](https://dgpu-docs.intel.com/driver/client/overview.html)
 * [Ubuntu Mainline Kernel Guide](https://doc.ubuntu-fr.org/mainline)
 * [Flameshot](https://flameshot.org/)
+* [Dracula Theme](https://draculatheme.com/)
