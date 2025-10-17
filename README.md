@@ -189,24 +189,6 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 
 ---
 
-### 6.7 Install Dracula Theme
-```bash
-
-mkdir -p /home/$USER/.themes /home/$USER/.config/gtk-4.0 /home/$USER/.config/assets
-
-wget -O /home/$USER/.themes/dracula-master.zip https://github.com/dracula/gtk/archive/master.zip
-unzip /home/$USER/.themes/dracula-master.zip -d /home/$USER/.themes
-mv /home/$USER/.themes/gtk-master /home/$USER/.themes/Dracula
-rm /home/$USER/.themes/dracula-master.zip
-
-cp -r /home/$USER/.themes/Dracula/assets/. /home/$USER/.config/assets/
-cp /home/$USER/.themes/Dracula/gtk-4.0/{gtk.css,gtk-dark.css} /home/$USER/.config/gtk-4.0/
-
-
-gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
-gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
-
-```
 ### 6.6 Install Docker
 
 ```bash
