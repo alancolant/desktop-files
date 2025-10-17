@@ -205,6 +205,11 @@ cp /home/$USER/.themes/Dracula/gtk-4.0/{gtk.css,gtk-dark.css} /home/$USER/.confi
 
 gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+
+# Terminal theme
+git clone --depth 1 https://github.com/dracula/gnome-terminal /tmp/dracula-terminal
+/tmp/dracula-terminal/install.sh -s Dracula --skip-dircolors
+rm -rf /tmp/dracula-terminal
 ```
 ### 6.6 Install Docker
 
