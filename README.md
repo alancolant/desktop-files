@@ -220,8 +220,11 @@ newgrp docker
 ```
 
 
-### 6.7 Restore keybindings, extensions config, themes
+### 6.7 Restore keybindings, extensions config, themes, fonts, ...
 ```bash
+
+sudo apt install -y fonts-firacode fonts-jetbrains-mono
+
 
 git clone https://github.com/alancolant/desktop-files temp
 dconf load / < ./temp/dconf.conf
