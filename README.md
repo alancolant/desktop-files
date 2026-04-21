@@ -235,6 +235,16 @@ rm -rf ./temp
 
 ---
 
+## Vesktop theme css
+```css
+
+@import url("https://grzesiek11.stary.pc.pl/files/builds/compactpp/latest/compactpp.theme.css");
+
+@import url("https://catppuccin.github.io/discord/dist/catppuccin-frappe.theme.css") (prefers-color-scheme: dark);
+@import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css") (prefers-color-scheme: light);
+
+```
+
 ## References
 
 * [Intel Linux GPU Driver Documentation](https://dgpu-docs.intel.com/driver/client/overview.html)
