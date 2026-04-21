@@ -41,15 +41,18 @@ sudo apt install mainline
 Follow the official Intel documentation: [Intel GPU Driver for Linux](https://dgpu-docs.intel.com/driver/client/overview.html)
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:kobuk-team/intel-graphics
+
+# Install proprietary drivers (not Ubuntu 26.04)
+#sudo apt-get update
+#sudo apt-get install -y software-properties-common
+#sudo add-apt-repository -y ppa:kobuk-team/intel-graphics
+#sudo apt-get install -y libmfx-gen1 intel-metrics-discovery intel-opencl-icd
 
 # Install Intel GPU runtime and OpenCL
 sudo apt-get install -y libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
 
 # Install VAAPI/media drivers
-sudo apt-get install -y intel-media-va-driver-non-free libmfx-gen1 libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
+sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
 ```
 
 ---
@@ -138,10 +141,11 @@ wget -qO- https://git.io/g-install | sh -s -- -y
 # MsEdge
 wget -qO /tmp/msedge.deb https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_141.0.3537.71-1_amd64.deb && sudo dpkg -i /tmp/msedge.deb && rm /tmp/msedge.deb
 
-# Discord
-wget -qO /tmp/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb" && sudo apt install /tmp/discord.deb && rm ./discord.deb
-# Disable Discord host update
-[ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
+# Vesktop
+wget -qO /tmp/vesktop.deb "https://vencord.dev/download/vesktop/amd64/deb" && sudo apt install /tmp/vesktop.deb && rm ./vesktop.deb
+
+# Disable Discord host update (not useful with vesktop)
+# [ -f /home/$USER/.config/discord/settings.json ] || (mkdir -p /home/$USER/.config/discord/ && echo '{"SKIP_HOST_UPDATE": true}' > /home/$USER/.config/discord/settings.json)
 
 # Bruno (AppImage)
 wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')"
@@ -186,6 +190,11 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 - [https://extensions.gnome.org/extension/7065/tiling-shell/](https://extensions.gnome.org/extension/7065/tiling-shell/)
 - [https://extensions.gnome.org/extension/3396/color-picker/](https://extensions.gnome.org/extension/3396/color-picker/) -> Change shortcut to `Super + C`
 - [https://extensions.gnome.org/extension/1460/vitals/](https://extensions.gnome.org/extension/1460/vitals/)
+- [https://extensions.gnome.org/extension/9334/dynamic-music-pill/](https://extensions.gnome.org/extension/9334/dynamic-music-pill/)
+- [https://extensions.gnome.org/extension/3780/ddterm/](https://extensions.gnome.org/extension/3780/ddterm/)
+- [https://extensions.gnome.org/extension/615/appindicator-support/](https://extensions.gnome.org/extension/615/appindicator-support/)
+- [https://extensions.gnome.org/extension/3628/arcmenu/](https://extensions.gnome.org/extension/3628/arcmenu/)
+- [https://extensions.gnome.org/extension/1160/dash-to-panel/](https://extensions.gnome.org/extension/1160/dash-to-panel/)
 
 ---
 
@@ -213,14 +222,18 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
-### 6.7 Install Homebrew
+### 6.7 Install Homebrew (optional)
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/$USER/.bashrc
 ```
 
+### 6.8 Install fnm (node version manager)
+```bash
+curl -fsSL https://fnm.vercel.app/install | bash
+```
 
-### 6.7 Restore keybindings, extensions config, themes, fonts, ...
+### 6.9 Restore keybindings, extensions config, themes, fonts, ...
 ```bash
 
 sudo apt install -y fonts-roboto-slab
@@ -240,3 +253,4 @@ rm -rf ./temp
 * [Ubuntu Mainline Kernel Guide](https://doc.ubuntu-fr.org/mainline)
 * [Flameshot](https://flameshot.org/)
 * [Dracula Theme](https://draculatheme.com/)
+* [Fast Node Manager (fnm)](https://github.com/Schniz/fnm)
