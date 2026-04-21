@@ -24,25 +24,13 @@ This guide details the steps to install the **mainline kernel 6.17**, set up the
 
 ---
 
-## 2. Mainline Kernel 6.17 Installation
-
-Install the latest mainline kernel to ensure full support for AMD Raphael iGPU and Intel Arc GPU, including S0 deep sleep compatibility and improved PCIe handling.
-
-```bash
-sudo add-apt-repository ppa:cappelikan/ppa
-sudo apt update
-sudo apt install mainline
-```
-
----
-
-## 3. Intel GPU Driver Installation via PPA
+## 2. Intel GPU Driver Installation via PPA
 
 Follow the official Intel documentation: [Intel GPU Driver for Linux](https://dgpu-docs.intel.com/driver/client/overview.html)
 
 ```bash
 
-# Install proprietary drivers (not Ubuntu 26.04)
+# Install proprietary drivers (not after 24.04)
 #sudo apt-get update
 #sudo apt-get install -y software-properties-common
 #sudo add-apt-repository -y ppa:kobuk-team/intel-graphics
@@ -57,7 +45,7 @@ sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libv
 
 ---
 
-## 4. Optimize SSD Performance
+## 3. Optimize SSD Performance
 
 Edit `/etc/fstab` and modify the root partition options:
 
@@ -79,7 +67,7 @@ sudo systemctl start fstrim.timer
 
 ---
 
-## 5. Modify GRUB for Kernel Selection and Boot Time
+## 4. Modify GRUB for Kernel Selection and Boot Time
 
 Edit `/etc/default/grub` and replace the default values with:
 
@@ -105,23 +93,23 @@ sudo reboot
 
 ---
 
-## 6. Install Useful Supplementary Packages
+## 5. Install Useful Supplementary Packages
 
 These packages enhance system usability, provide common utilities, and add multimedia support.
 
-### 6.1 Disable ubuntu Pro functions
+### 5.1 Disable ubuntu Pro functions
 
 ```bash
 sudo apt-get remove -y --purge ubuntu-pro-client
 ```
 
-### 6.2 Install AppImage dependencies + AppImageLauncher
+### 5.2 Install AppImage dependencies + AppImageLauncher
 ```bash
 sudo apt install -y libfuse2t64
 wget -qO appimagelauncher.deb https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-1/appimagelauncher_3.0.0-alpha-4-gha275.0bcc75d_amd64.deb && sudo dpkg -i appimagelauncher.deb && rm appimagelauncher.deb
 ```
 
-### 6.3 Install other packages
+### 5.3 Install other packages
 
 ```bash
 # Update package list first
@@ -151,7 +139,7 @@ wget -qO /tmp/vesktop.deb "https://vencord.dev/download/vesktop/amd64/deb" && su
 wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/bruno/releases/latest/download/$(curl -sL https://github.com/usebruno/bruno/releases/latest/download/latest-linux.yml | grep -oP 'path:\s*\K.*')"
 ```
 
-### 6.4 Install Flameshot and configure
+### 5.4 Install Flameshot and configure
 ```bash
 sudo apt install -y flameshot
 
@@ -180,7 +168,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 ```
 
 
-### 6.5 Install GNOME Extensions
+### 5.5 Install GNOME Extensions
 
 ```bash
 sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chrome-gnome-shell
@@ -198,7 +186,7 @@ sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-manager chr
 
 ---
 
-### 6.6 Install Docker
+### 5.6 Install Docker
 
 ```bash
 # Add Docker GPG key
@@ -222,18 +210,18 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
-### 6.7 Install Homebrew (optional)
+### 5.7 Install Homebrew (optional)
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/$USER/.bashrc
 ```
 
-### 6.8 Install fnm (node version manager)
+### 5.8 Install fnm (node version manager)
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash
 ```
 
-### 6.9 Restore keybindings, extensions config, themes, fonts, ...
+### 5.9 Restore keybindings, extensions config, themes, fonts, ...
 ```bash
 
 sudo apt install -y fonts-roboto-slab
