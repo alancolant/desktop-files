@@ -1,4 +1,4 @@
-# Ubuntu 24.04 Optimization for Ryzen 9 7900 + AMD Raphael + Intel Arc B580
+# Ubuntu 26.04 Optimization for Ryzen 9 7900 + AMD Raphael + Intel Arc B580
 
 This guide details the steps to install the **mainline kernel 6.17**, set up the **Intel GPU drivers**, and optimize the system for SSD and multi-GPU stability with S0 sleep.
 
