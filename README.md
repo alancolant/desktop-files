@@ -44,25 +44,40 @@ sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libv
 ```
 
 ---
+Here is a clean, concise version in English for your Git repo:
 
-## 3. Optimize SSD Performance
+---
 
-Edit `/etc/fstab` and modify the root partition options:
+## 3. SSD & RAM Optimization
+
+### 3.1. File System Optimization (`fstab`)
+Reduce SSD wear by disabling unnecessary write operations.
 
 ```text
-# Example fstab line for SSD (adjust UUID)
-UUID=<your-ssd-uuid> / ext4 defaults,noatime,data=ordered 0 1
+# Edit /etc/fstab: Add 'noatime' to your root partition
+UUID=<your-uuid> / ext4 defaults,noatime,data=ordered 0 1 # Keep defaults first
 ```
 
-### Notes:
-
-* `noatime` disables file access time updates for all files and directories, reducing SSD writes.
-* `data=ordered` ensures data consistency after crashes.
-* Optional: Use `fstrim.timer` for periodic TRIM instead of `discard` in fstab:
+* **`noatime`**: Stops the system from writing access timestamps for every file read.
+* **`data=ordered`**: Ensures data consistency after crashes.
+* **Periodic TRIM**: Use the systemd `fstrim.timer` instead of the `discard` mount option for better performance.
 
 ```bash
-sudo systemctl enable fstrim.timer
-sudo systemctl start fstrim.timer
+sudo systemctl enable --now fstrim.timer
+```
+
+### 3.2. Memory Management
+Force the kernel to prioritize physical RAM over disk swap to improve responsiveness.
+
+```bash
+# Set swappiness to 5 (minimal swap usage)
+echo "vm.swappiness=5" | sudo tee -a /etc/sysctl.d/99-custom.conf
+
+# Optional: Improve directory/inode caching
+echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.d/99-custom.conf
+
+# Apply changes immediately
+sudo sysctl --system
 ```
 
 ---
