@@ -44,9 +44,6 @@ sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libv
 ```
 
 ---
-Here is a clean, concise version in English for your Git repo:
-
----
 
 ## 3. SSD & RAM Optimization
 
