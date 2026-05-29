@@ -13,9 +13,9 @@ This guide details the steps to install the **mainline kernel 6.17**, set up the
    - Ensure the integrated GPU (AMD Raphael) remains active even when the discrete GPU (Intel Arc) is installed.  
    - This is required for multi-GPU setups, hybrid rendering, or GPU passthrough.
 
-3. **Enable RAM XMP/DOCP Profile (e.g., DOCP 2)**  
+3. **Enable RAM XMP/DOCP Profile (e.g., DOCP 1)**  
    - Set memory to its rated speed (e.g., 6000 MHz) by enabling the appropriate DOCP/XMP profile.
-   - Enable Restore From Context RAM (ensure reboot work correctly)
+   - ~~Enable Restore From Context RAM (ensure reboot work correctly)~~
    - Ensures full memory bandwidth and optimal Ryzen performance.
 
 4. **Disable Secure Boot**  
@@ -24,7 +24,7 @@ This guide details the steps to install the **mainline kernel 6.17**, set up the
 
 ---
 
-## 2. Intel GPU Driver Installation via PPA
+## 2. Intel GPU Driver Installation via PPA + drivers
 
 Follow the official Intel documentation: [Intel GPU Driver for Linux](https://dgpu-docs.intel.com/driver/client/overview.html)
 
@@ -41,6 +41,10 @@ sudo apt-get install -y libze-intel-gpu1 libze1 intel-metrics-discovery intel-op
 
 # Install VAAPI/media drivers
 sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libva-glx2 va-driver-all vainfo
+
+# Add ASUS motherboards sensors driver 
+echo "nct6775" | sudo tee -a /etc/modules-load.d/99-custom.conf
+sudo systemctl restart systemd-modules-load
 ```
 
 ---
