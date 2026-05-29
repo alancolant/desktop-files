@@ -71,7 +71,7 @@ sudo systemctl enable --now fstrim.timer
 sudo apt-get install -y zram-tools
 
 sudo sed -i 's/^ALGO=.*/ALGO=lz4/' /etc/default/zramswap || echo 'ALGO=lz4' | sudo tee -a /etc/default/zramswap
-sudo sed -i 's/^PERCENT=.*/PERCENT=25/' /etc/default/zramswap || echo 'PERCENT=25' | sudo tee -a /etc/default/zramswap
+sudo sed -i 's/^PERCENT=.*/PERCENT=15/' /etc/default/zramswap || echo 'PERCENT=15' | sudo tee -a /etc/default/zramswap
 sudo systemctl restart zramswap
 
 # zramctl
@@ -83,7 +83,7 @@ Pour garantir que le noyau privilégie toujours la RAM physique :
 
 ```bash
 echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-zram-optimization.conf
-echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.d/99-zram-optimization.conf
+echo "vm.vfs_cache_pressure=60" | sudo tee -a /etc/sysctl.d/99-zram-optimization.conf
 
 sudo sysctl --system
 ```
