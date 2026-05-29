@@ -45,7 +45,7 @@ sudo apt-get install -y intel-media-va-driver-non-free libvpl2 libvpl-tools libv
 
 ---
 
-## 3. SSD & RAM Optimization
+## 3. SSD Optimization
 
 ### 3.1. File System Optimization (`fstab`)
 Reduce SSD wear by disabling unnecessary write operations.
@@ -63,18 +63,39 @@ UUID=<your-uuid> / ext4 defaults,noatime,data=ordered 0 1 # Keep defaults first
 sudo systemctl enable --now fstrim.timer
 ```
 
-### 3.2. Memory Management
-Force the kernel to prioritize physical RAM over disk swap to improve responsiveness.
+---
+
+### 6. Optimisation Mémoire : ZRAM et Swappiness
 
 ```bash
-# Set swappiness to 5 (minimal swap usage)
-echo "vm.swappiness=5" | sudo tee -a /etc/sysctl.d/99-custom.conf
+sudo apt-get install -y zram-tools
 
-# Optional: Improve directory/inode caching
-echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.d/99-custom.conf
+sudo sed -i 's/^ALGO=.*/ALGO=lz4/' /etc/default/zramswap || echo 'ALGO=lz4' | sudo tee -a /etc/default/zramswap
+sudo sed -i 's/^PERCENT=.*/PERCENT=25/' /etc/default/zramswap || echo 'PERCENT=25' | sudo tee -a /etc/default/zramswap
+sudo systemctl restart zramswap
 
-# Apply changes immediately
+# zramctl
+```
+
+### 6.2 Ajustement de la "Swappiness" et du cache
+
+Pour garantir que le noyau privilégie toujours la RAM physique :
+
+```bash
+echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-zram-optimization.conf
+echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.d/99-zram-optimization.conf
+
 sudo sysctl --system
+```
+
+### 6.3 Sécurité proactive avec systemd-oomd
+
+L'usage de `systemd-oomd` permet une gestion fine des conteneurs Docker en cas de saturation.
+
+```bash
+sudo systemctl enable --now systemd-oomd
+systemctl status systemd-oomd
+
 ```
 
 ---
