@@ -180,27 +180,38 @@ wget -qO /home/$USER/Applications/bruno.AppImage "https://github.com/usebruno/br
 ```bash
 sudo snap install gradia
 
-# Change native shortcuts
-
+# Change native shortcut
 gsettings set org.gnome.shell.keybindings screenshot "[]"
 gsettings set org.gnome.shell.keybindings screenshot-window "[]"
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "[]"
 
+# Enregistrer les 4 raccourcis personnalisés
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/'
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/',
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/'
 ]"
 
-# 1. Gradia GUI
+# 1. Gradia GUI (<Shift>Print)
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Gradia GUI"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "gradia"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Shift>Print"
 
-# 2. Gradia interactive
+# 2. Gradia interactive (Print)
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "Gradia Interactive"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "gradia --screenshot=INTERACTIVE"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "Print"
 
+# 3. Gradia Interactive with Shift+Super+S
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name "Gradia Interactive (Super)"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "gradia --screenshot=INTERACTIVE"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Shift><Super>s"
+
+# 4. Gradia GUI with Shift+Ctrl+Super+C
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name "Gradia GUI (Ctrl+Super)"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "gradia"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding "<Shift><Control><Super>c"
 ```
 
 
